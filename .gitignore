@@ -1,0 +1,8 @@
+bin/
+obj/
+Properties/
+Images/
+sample-data/
+bootstrap/
+open-iconic/
+/Pages/Admin.razor

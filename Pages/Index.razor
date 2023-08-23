@@ -1,0 +1,80 @@
+﻿@inject NavigationManager navigation
+@inject HttpClient http
+@using NewApp.Services;
+@inject ICartService cartService
+@using System.Text.Json
+@using NewApp.Models
+@page "/"
+
+<PageTitle>Watch⌚Land</PageTitle>
+
+
+<div class=" mx-auto mb-4">
+    <div class="banner">
+        <button type="button" @onclick="OpenStore" class=" mt-2 banner__button">Shop Now</button>
+    </div>
+</div>
+<section>
+    <div class="">
+        @if(products == null){
+            <h5 class="text-center">waiting...</h5>
+        }else{
+            <div class="container">
+                <h1 class="display-6 text-center">Best-selling Watches</h1>
+                <div class="container__inner row">
+                @foreach(Product item in products){
+                     <div class="card  mx-md-4 col-xs-12 col-md-3" style="max-width: 10rem;">
+                        <img class="card-img-top img-fluid" src="@item.Logo" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title">@item.ProductName</h4>
+                            <p class="card-text lead">@item.Description</p>
+                            <p class="badge bg-info">@item.Price</p>
+                            <button class="btn btn-sm btn-warning" @onclick="()=>cartService.AddProduct(item)">Add To Cart</button>
+                        </div>
+                    </div>
+                }
+                </div>
+            </div>
+        }
+
+    </div>
+</section>
+<section class="container-fluid p-3">
+    <h1 class="display-6 toast-header">About our products & services</h1>
+      <table class="table">
+        <tbody>
+            <tr class="d-block py-4 ">
+                <th scope="row">1</th>
+                <td>We provide a cash-on-delivery service</td>
+            </tr>
+            <tr class="d-block py-4 ">
+                <th scope="row">2</th>
+                <td>All our products are genuine</td>
+            </tr>
+            <tr class="d-block py-4 ">
+                <th scope="row">3</th>
+                <td>Concerning authenticity, products' authenticity can be checked by contacting us </td>
+            </tr>
+
+        </tbody>
+      </table>
+</section>
+
+
+@code{
+
+    IList<Product>? products;
+    protected void OpenStore(){
+        navigation.NavigateTo("/products");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        try{
+        products = await http.GetFromJsonAsync<Product[]>("sample-data/products.json");
+        }
+        catch(Exception ex){
+            Console.WriteLine(ex.Message);
+        }
+    }
+}

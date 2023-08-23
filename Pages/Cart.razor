@@ -1,0 +1,31 @@
+@page "/Cart"
+@using NewApp.Services
+@inject ICartService cartService
+
+<PageTitle >Shopping Cart</PageTitle>
+
+
+
+<h1 class="display-2">Your Cart</h1>
+
+@if (!cartService.Cart.Any())
+{
+    <p>Your basket is currently empty</p>
+
+    <p class="lead">Take a tour over our products <NavLink href="products" class="text-success text-decoration-underline">here</NavLink> </p>
+}else{
+    <div>
+        <ul class="list-group">
+            @foreach (var item in cartService.Cart)
+            {
+                <li class="list-group-item p-2">
+                    <button type="button" @onclick="()=>cartService.RemoveProduct(item)" class="btn btn-sm btn-danger me-2">Delete</button>
+                    @item.ProductName - $@item.Price
+                </li>
+            }
+        </ul>
+        <div class="p-2">
+            <h3>Total: $@cartService.Total</h3>
+        </div>
+    </div>
+}

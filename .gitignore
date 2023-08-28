@@ -6,3 +6,4 @@ sample-data/
 bootstrap/
 open-iconic/
 /Pages/Admin.razor
+Shared/Form.*

@@ -28,8 +28,8 @@
                         <div class="card-body">
                             <h4 class="card-title">@item.ProductName</h4>
                             <p class="card-text lead">@item.Description</p>
-                            <p class="badge bg-info">@item.Price</p>
-                            <button class="btn btn-sm btn-warning" @onclick="()=>cartService.AddProduct(item)">Add To Cart</button>
+                            <p class="badge badge-clr">@item.Price</p>
+                            <button class="btn btn-sm btn-warning " @onclick="()=>cartService.AddProduct(item)">Add To Cart</button>
                         </div>
                     </div>
                 }

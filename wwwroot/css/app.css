@@ -1,5 +1,22 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
-
+:root{
+    --main-clr:#252B48;
+    --secondary-clr:#F7E987;
+    --bg-clr:#f5ebeb;
+    --text-clr:#000;
+}
+.main-clr{
+    color:var(--main-clr) !important;
+}
+.main-clr--bg{
+    background-color: var(--main-clr);
+}
+.secondary-clr{
+    color: var(--secondary-clr) !important;
+}
+.secondary-clr--bg{
+    background-color: var(--secondary-clr);
+}
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -162,4 +179,15 @@ a, .btn-link {
 .container__inner > *{
     margin: 3em auto;
     
+}
+
+.navbar__header{
+    font-size: 1.2rem !important; 
+    font-family: monospace;
+    text-transform: capitalize;
+    font-variant: small-caps;
+    padding-left: 2em;
+    background: url(../Images/shoping-logo.png) no-repeat ;
+    background-size: contain;
+    background-position: left;
 }
